@@ -5,33 +5,33 @@ import {VideoThumbnailGenerator} from '../../libs/videoThumbnailGenerator';
   styleUrl: 'browser-video-convert-example.css'
 })
 export class BrowserVideoConvertExample implements ComponentInterface {
-  @Prop() videoSrc:string;
+  @Prop() videoSrc:string|undefined;
   @Prop() framePosition: 'start' | 'middle' | 'end' | number = 'middle';
-  @State() objectURL:string;
-  @State() generatedImg:{ width: number, height: number, thumbnail: string } = null;
+  @State() objectURL:string|undefined;
+  @State() generatedImg:{ width: number, height: number, thumbnail: string }|null = null;
 
-  private convert: VideoThumbnailGenerator;
+  private convert: VideoThumbnailGenerator|undefined;
   async componentWillLoad(){
     // Converting videourl to local
-    const blob = await fetch(this.videoSrc)
+    const blob = await fetch(this.videoSrc as string)
       .then(response => response.blob());
     // Create a local URL for the video blob
     this.objectURL = URL.createObjectURL(blob);
 
     //create Thumbnail on position
-    this.convert = new VideoThumbnailGenerator(this.objectURL);
+    this.convert = new VideoThumbnailGenerator(this.objectURL) as VideoThumbnailGenerator;
     this.generatedImg = await this.convert.getThumbnail(this.framePosition);
 
     //cleanup
     URL.revokeObjectURL(this.objectURL);
     setTimeout(() => {
-      this.convert.revokeUrls();
+      this.convert?.revokeUrls();
     },1000);
   }
 
   disconnectedCallback() {
-    URL.revokeObjectURL(this.objectURL);
-    this.convert.revokeUrls();
+    URL.revokeObjectURL(this.objectURL as string);
+    this.convert?.revokeUrls();
   }
 
   render() {

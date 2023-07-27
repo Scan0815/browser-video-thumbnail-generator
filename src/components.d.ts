@@ -8,7 +8,7 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface BrowserVideoConvertExample {
         "framePosition": 'start' | 'middle' | 'end' | number;
-        "videoSrc": string;
+        "videoSrc": string|undefined;
     }
 }
 declare global {
@@ -25,7 +25,7 @@ declare global {
 declare namespace LocalJSX {
     interface BrowserVideoConvertExample {
         "framePosition"?: 'start' | 'middle' | 'end' | number;
-        "videoSrc"?: string;
+        "videoSrc"?: string|undefined;
     }
     interface IntrinsicElements {
         "browser-video-convert-example": BrowserVideoConvertExample;

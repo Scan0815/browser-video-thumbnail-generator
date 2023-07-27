@@ -10,7 +10,7 @@
 | Property        | Attribute        | Description | Type                                     | Default     |
 | --------------- | ---------------- | ----------- | ---------------------------------------- | ----------- |
 | `framePosition` | `frame-position` |             | `"end" \| "middle" \| "start" \| number` | `'middle'`  |
-| `videoSrc`      | `video-src`      |             | `string`                                 | `undefined` |
+| `videoSrc`      | `video-src`      |             | `string \| undefined`                    | `undefined` |
 
 
 ----------------------------------------------
