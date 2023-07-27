@@ -1,4 +1,4 @@
-export default class VideoThumbnailGenerator {
+export class VideoThumbnailGenerator {
     private readonly video: HTMLVideoElement;
     private canvas: HTMLCanvasElement;
     private blobUrls: string[] = [];
