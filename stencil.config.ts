@@ -21,4 +21,7 @@ export const config: Config = {
   testing: {
     browserHeadless: "new",
   },
+  nodeResolve: {
+    browser:false
+  }
 };
