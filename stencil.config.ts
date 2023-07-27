@@ -4,8 +4,9 @@ export const config: Config = {
   namespace: 'browser-video-thumbnail-generator',
   enableCache: true,
   hashFileNames: true,
-  sourceMap: true,
+  sourceMap: false,
   minifyCss: true,
+  autoprefixCss: true,
   outputTargets: [
     {
       type: 'dist',
