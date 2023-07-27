@@ -1,6 +1,6 @@
 {
   "name": "browser-video-thumbnail-generator",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Stencil Component Starter",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
@@ -12,7 +12,7 @@
   "unpkg": "dist/browser-video-thumbnail-generator/browser-video-thumbnail-generator.esm.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ionic-team/stencil-component-starter.git"
+    "url": "https://github.com/Scan0815/browser-video-thumbnail-generator.git"
   },
   "files": [
     "dist/",

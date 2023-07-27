@@ -1,5 +1,5 @@
 import { Component, h, ComponentInterface, Prop, State } from '@stencil/core';
-import VideoThumbnailGenerator from '../../libs/videoThumbnailGenerator';
+import {VideoThumbnailGenerator} from '../../libs/videoThumbnailGenerator';
 @Component({
   tag: 'browser-video-convert-example',
   styleUrl: 'browser-video-convert-example.css'
@@ -21,7 +21,6 @@ export class BrowserVideoConvertExample implements ComponentInterface {
     //create Thumbnail on position
     this.convert = new VideoThumbnailGenerator(this.objectURL);
     this.generatedImg = await this.convert.getThumbnail(this.framePosition);
-
 
     //cleanup
     URL.revokeObjectURL(this.objectURL);
