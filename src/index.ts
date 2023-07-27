@@ -1,1 +1,1 @@
-export {VideoThumbnailGenerator} from './libs/videoThumbnailGenerator';
+export * from './libs/videoThumbnailGenerator';
