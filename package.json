@@ -8,6 +8,7 @@
   "es2017": "dist/esm/index.mjs",
   "types": "dist/types/index.d.ts",
   "collection": "dist/collection/collection-manifest.json",
+  "collection:main": "dist/collection/index.js",
   "unpkg": "dist/browser-video-thumbnail-generator/browser-video-thumbnail-generator.esm.js",
   "repository": {
     "type": "git",
