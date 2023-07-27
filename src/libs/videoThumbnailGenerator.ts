@@ -8,7 +8,6 @@ export class VideoThumbnailGenerator {
         this.canvas = document.createElement('canvas');
         this.video.crossOrigin = 'anonymous';
         this.videoSrc = videoSrc;
-        console.log(this.videoSrc);
         if (!this.videoSrc) {
             throw new Error('No video source provided');
         }
