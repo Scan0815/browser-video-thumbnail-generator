@@ -12,7 +12,7 @@ You can install this package using npm:
 
 Here's how you can use this library to generate a thumbnail from a video:
 
-```import {VideoThumbnailGenerator} from "browser-video-thumbnail-generator/dist";
+```import {VideoThumbnailGenerator} from "browser-video-thumbnail-generator";
 
 const videoSrc = 'path-to-your-video-file';
 const generator = new VideoThumbnailGenerator(videoSrc);
