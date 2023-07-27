@@ -8,7 +8,6 @@
   "es2017": "dist/esm/index.mjs",
   "types": "dist/types/index.d.ts",
   "collection": "dist/collection/collection-manifest.json",
-  "collection:main": "dist/collection/index.js",
   "unpkg": "dist/browser-video-thumbnail-generator/browser-video-thumbnail-generator.esm.js",
   "repository": {
     "type": "git",
@@ -34,8 +33,7 @@
     "@types/node": "^16.18.11",
     "jest": "^27.5.1",
     "jest-cli": "^27.5.1",
-    "puppeteer": "^20.7.3",
-    "rollup-plugin-node-polyfills": "^0.2.1"
+    "puppeteer": "^20.7.3"
   },
   "license": "MIT"
 }
