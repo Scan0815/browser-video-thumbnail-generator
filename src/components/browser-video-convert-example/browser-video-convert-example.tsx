@@ -1,5 +1,5 @@
 import { Component, h, ComponentInterface, Prop, State } from '@stencil/core';
-import VideoThumbnailGenerator from '../../libs/videoThumbnailGenerator';
+import {VideoThumbnailGenerator} from '../../libs/videoThumbnailGenerator';
 @Component({
   tag: 'browser-video-convert-example',
   styleUrl: 'browser-video-convert-example.css'
