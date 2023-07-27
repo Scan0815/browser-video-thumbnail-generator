@@ -18,9 +18,6 @@ export const config: Config = {
       serviceWorker: null, // disable service workers
     },
   ],
-  nodeResolve: {
-    browser: false
-  },
   testing: {
     browserHeadless: "new",
   },
