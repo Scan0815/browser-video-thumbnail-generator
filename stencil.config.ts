@@ -1,4 +1,5 @@
 import { Config } from '@stencil/core';
+import nodePolyfills from 'rollup-plugin-node-polyfills';
 
 export const config: Config = {
   namespace: 'browser-video-thumbnail-generator',
@@ -7,6 +8,13 @@ export const config: Config = {
   sourceMap: false,
   minifyCss: true,
   autoprefixCss: true,
+  rollupPlugins: {
+    before: [
+    ],
+    after: [
+      nodePolyfills()
+    ]
+  },
   outputTargets: [
     {
       type: 'dist',
@@ -29,6 +37,6 @@ export const config: Config = {
     browserHeadless: "new",
   },
   nodeResolve: {
-    browser:false
+    browser:true
   }
 };
