@@ -29,7 +29,8 @@ generator.getThumbnail()
 
 You can also generate multiple thumbnails at once:
 
-```generator.getThumbnails(5)
+```
+  generator.getThumbnails(5)
   .then(({ thumbnails, revoke }) => {
     // Use the thumbnails...
     console.log(thumbnails);
@@ -37,6 +38,8 @@ You can also generate multiple thumbnails at once:
     revoke();`
   });
 ```
+
+If the Video is not playable the promise will rejected with an error message.
 
 ## License
 
