@@ -76,11 +76,18 @@ export class VideoThumbnailGenerator {
 
         this.initVideo();
 
-        await new Promise((resolve) => {
+        await new Promise((resolve,reject) => {
             this.video.addEventListener('loadedmetadata', () => {
                 this.canvas.width = this.video.videoWidth;
                 this.canvas.height = this.video.videoHeight;
                 resolve(null);
+            });
+            this.video.addEventListener('error', () => {
+              reject(
+                new Error(
+                  "Error loading video (codec might not be supported by this browser)"
+                )
+              );
             });
         });
 
