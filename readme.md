@@ -23,7 +23,7 @@ generator.getThumbnail()
     // Use the thumbnail...
     console.log(thumbnail);
     // When you're done with the thumbnail, revoke it to free memory
-    generator.revoke();
+    generator.revokeUrls();
   });
 ```
 
@@ -35,7 +35,7 @@ You can also generate multiple thumbnails at once:
     // Use the thumbnails...
     console.log(thumbnails);
     // When you're done with the thumbnails, revoke them to free memory`
-    generator.revoke();`
+    generator.revokeUrls();`
   });
 ```
 
