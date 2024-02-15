@@ -50,23 +50,24 @@ export class VideoThumbnailGenerator {
         this.video.load();
     }
 
+    private addListener(resolve:(value:any) => void, reject:(reason?: any) => void){
+      this.video.addEventListener('loadedmetadata', () => {
+        this.canvas.width = this.video.videoWidth;
+        this.canvas.height = this.video.videoHeight;
+        resolve(null);
+      });
+      this.video.addEventListener('error', () => {
+        reject(
+          new Error(
+            "Error loading video (codec might not be supported by this browser)"
+          )
+        );
+      });
+    }
+
     public async generateThumbnails(numFrames: number): Promise<{ width: number, height: number, thumbnail: string }[]> {
         this.initVideo();
-        await new Promise((resolve,reject) => {
-            this.video.addEventListener('loadedmetadata', () => {
-                this.canvas.width = this.video.videoWidth;
-                this.canvas.height = this.video.videoHeight;
-                resolve(null);
-            });
-            this.video.addEventListener('error', () => {
-              reject(
-                new Error(
-                  "Error loading video (codec might not be supported by this browser)"
-                )
-              );
-            });
-        });
-
+        await new Promise((resolve,reject) => this.addListener(resolve,reject));
         const thumbnails = [];
         const duration = this.video.duration;
         const interval = duration / numFrames;
@@ -81,20 +82,7 @@ export class VideoThumbnailGenerator {
 
     public async getThumbnail(framePosition: 'start' | 'middle' | 'end' | number = 'middle'): Promise<{ width: number, height: number, thumbnail: string }> {
         this.initVideo();
-        await new Promise((resolve,reject) => {
-            this.video.addEventListener('loadedmetadata', () => {
-                this.canvas.width = this.video.videoWidth;
-                this.canvas.height = this.video.videoHeight;
-                resolve(null);
-            });
-            this.video.addEventListener('error', () => {
-              reject(
-                new Error(
-                  "Error loading video (codec might not be supported by this browser)"
-                )
-              );
-            });
-        });
+        await new Promise((resolve,reject) => this.addListener(resolve,reject));
 
         let time = 0;
         if (typeof framePosition === 'number') {
