@@ -1,17 +1,19 @@
 import { Component, h, ComponentInterface, Prop, State } from '@stencil/core';
-import {VideoThumbnailGenerator} from '../../libs/videoThumbnailGenerator';
+import { VideoThumbnailGenerator } from '../../libs/videoThumbnailGenerator';
+
 @Component({
   tag: 'browser-video-convert-example',
-  styleUrl: 'browser-video-convert-example.css'
+  styleUrl: 'browser-video-convert-example.css',
 })
 export class BrowserVideoConvertExample implements ComponentInterface {
-  @Prop() videoSrc:string|undefined;
+  @Prop() videoSrc: string | undefined;
   @Prop() framePosition: 'start' | 'middle' | 'end' | number = 'middle';
-  @State() objectURL:string|undefined;
-  @State() generatedImg:{ width: number, height: number, thumbnail: string }|null = null;
-  @State() generatedImgs:{ width: number, height: number, thumbnail: string }[]|null = null;
-  private convert: VideoThumbnailGenerator|undefined;
-  async componentWillLoad(){
+  @State() objectURL: string | undefined;
+  @State() generatedImg: { width: number, height: number, thumbnail: string } | null = null;
+  @State() generatedImgs: { width: number, height: number, thumbnail: string }[] | null = null;
+  private convert: VideoThumbnailGenerator | undefined;
+
+  async componentWillLoad() {
     // Converting videourl to local
     const blob = await fetch(this.videoSrc as string)
       .then(response => response.blob());
@@ -27,7 +29,7 @@ export class BrowserVideoConvertExample implements ComponentInterface {
     URL.revokeObjectURL(this.objectURL as string);
     setTimeout(() => {
       this.convert?.revokeUrls();
-    },1000);
+    }, 1000);
   }
 
   disconnectedCallback() {
