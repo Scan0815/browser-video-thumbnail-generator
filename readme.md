@@ -19,11 +19,11 @@ const videoSrc = 'path-to-your-video-file';
 const generator = new VideoThumbnailGenerator(videoSrc);
 
 generator.getThumbnail()
-  .then(({ thumbnail, revoke }) => {
+  .then((thumbnail) => {
     // Use the thumbnail...
     console.log(thumbnail);
     // When you're done with the thumbnail, revoke it to free memory
-    revoke();
+    generator.revoke();
   });
 ```
 
@@ -31,11 +31,11 @@ You can also generate multiple thumbnails at once:
 
 ```
   generator.getThumbnails(5)
-  .then(({ thumbnails, revoke }) => {
+  .then((thumbnails) => {
     // Use the thumbnails...
     console.log(thumbnails);
     // When you're done with the thumbnails, revoke them to free memory`
-    revoke();`
+    generator.revoke();`
   });
 ```
 
