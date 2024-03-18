@@ -3,7 +3,6 @@ export class VideoThumbnailGenerator {
   private canvas: HTMLCanvasElement;
   private blobUrls: string[] = [];
   private readonly videoSrc: string;
-
   constructor(videoSrc: string) {
     this.video = document.createElement('video');
     this.canvas = document.createElement('canvas');
@@ -18,26 +17,27 @@ export class VideoThumbnailGenerator {
     return new Promise((resolve, reject) => {
       this.video.currentTime = time;
       const onSeeked = () => {
-        const context = this.canvas.getContext('2d');
-        context?.drawImage(this.video, 0, 0, this.video.videoWidth, this.video.videoHeight);
+        setTimeout(() => {
+          const context = this.canvas.getContext('2d');
+          context?.drawImage(this.video, 0, 0, this.video.videoWidth, this.video.videoHeight);
 
-        this.canvas.toBlob((blob) => {
-          if (blob) {
-            const blobUrl = URL.createObjectURL(blob);
-            this.blobUrls.push(blobUrl);
-            resolve({
-              width: this.video.videoWidth,
-              height: this.video.videoHeight,
-              thumbnail: blobUrl,
-            });
-          } else {
-            reject(new Error('Failed to create blob from canvas'));
-          }
-        });
+          this.canvas.toBlob((blob) => {
+            if (blob) {
+              const blobUrl = URL.createObjectURL(blob);
+              this.blobUrls.push(blobUrl);
+              resolve({
+                width: this.video.videoWidth,
+                height: this.video.videoHeight,
+                thumbnail: blobUrl,
+              });
+            } else {
+              reject(new Error('Failed to create blob from canvas'));
+            }
+          });
 
-        this.video.removeEventListener('seeked', onSeeked);
+          this.video.removeEventListener('seeked', onSeeked);
+        },100);
       };
-
       this.video.addEventListener('seeked', onSeeked);
     });
   }
@@ -51,9 +51,10 @@ export class VideoThumbnailGenerator {
   }
 
   private addListener(resolve: (value: any) => void, reject: (reason?: any) => void) {
-    const onLoadMetaData = () => {
+    const onLoadMetaData = (ev:any) => {
       this.canvas.width = this.video.videoWidth;
       this.canvas.height = this.video.videoHeight;
+      console.log(ev)
       resolve(null);
       this.video.removeEventListener('loadedmetadata', onLoadMetaData);
       this.video.removeEventListener('error', onError);
@@ -75,7 +76,6 @@ export class VideoThumbnailGenerator {
     const thumbnails = [];
     const duration = this.video.duration;
     const interval = duration / numFrames;
-
     for (let i = 0; i < numFrames; i++) {
       const time = i * interval;
       thumbnails.push(await this.drawThumbnailAtTime(time));
@@ -97,17 +97,16 @@ export class VideoThumbnailGenerator {
     } else {
       switch (framePosition) {
         case 'start':
-          time = 0;
+          time = 0.1;
           break;
         case 'middle':
-          time = this.video.duration / 2;
+          time = Math.round(this.video.duration / 2);
           break;
         case 'end':
           time = this.video.duration;
           break;
       }
     }
-
     return this.drawThumbnailAtTime(time);
   }
 
