@@ -51,10 +51,9 @@ export class VideoThumbnailGenerator {
   }
 
   private addListener(resolve: (value: any) => void, reject: (reason?: any) => void) {
-    const onLoadMetaData = (ev:any) => {
+    const onLoadMetaData = () => {
       this.canvas.width = this.video.videoWidth;
       this.canvas.height = this.video.videoHeight;
-      console.log(ev)
       resolve(null);
       this.video.removeEventListener('loadedmetadata', onLoadMetaData);
       this.video.removeEventListener('error', onError);
