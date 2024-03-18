@@ -96,10 +96,10 @@ export class VideoThumbnailGenerator {
     } else {
       switch (framePosition) {
         case 'start':
-          time = 0.1;
+          time = Math.min(0.1, this.video.duration);
           break;
         case 'middle':
-          time = Math.round(this.video.duration / 2);
+          time = this.video.duration / 2;
           break;
         case 'end':
           time = this.video.duration;
