@@ -12,7 +12,7 @@
   "unpkg": "dist/browser-video-thumbnail-generator/browser-video-thumbnail-generator.esm.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Scan0815/browser-video-thumbnail-generator.git"
+    "url": "git+https://github.com/Scan0815/browser-video-thumbnail-generator.git"
   },
   "files": [
     "dist/",
