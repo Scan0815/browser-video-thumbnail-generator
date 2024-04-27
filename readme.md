@@ -30,7 +30,7 @@ generator.getThumbnail()
 You can also generate multiple thumbnails at once:
 
 ```
-  generator.generateThumbnails(5)
+  generator.getThumbnails(5)
   .then((thumbnails) => {
     // Use the thumbnails...
     console.log(thumbnails);

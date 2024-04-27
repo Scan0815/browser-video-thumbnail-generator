@@ -69,7 +69,7 @@ export class VideoThumbnailGenerator {
     this.video.addEventListener('error', onError);
   }
 
-  public async generateThumbnails(numFrames: number): Promise<{ width: number, height: number, thumbnail: string }[]> {
+  public async getThumbnails(numFrames: number): Promise<{ width: number, height: number, thumbnail: string }[]> {
     this.initVideo();
     await new Promise((resolve, reject) => this.addListener(resolve, reject));
     const thumbnails = [];
