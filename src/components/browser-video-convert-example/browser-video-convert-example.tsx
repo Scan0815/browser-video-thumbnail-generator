@@ -23,7 +23,7 @@ export class BrowserVideoConvertExample implements ComponentInterface {
     //create Thumbnail on position
     this.convert = new VideoThumbnailGenerator(this.objectURL) as VideoThumbnailGenerator;
     this.generatedImg = await this.convert.getThumbnail(this.framePosition);
-    this.generatedImgs = await this.convert.generateThumbnails(5);
+    this.generatedImgs = await this.convert.getThumbnails(5);
 
     //cleanup
     URL.revokeObjectURL(this.objectURL as string);
@@ -47,7 +47,7 @@ export class BrowserVideoConvertExample implements ComponentInterface {
           }
         </ul>
         <ul>
-          <li>generateThumbnails</li>
+          <li>getThumbnails</li>
           {this.generatedImgs && this.generatedImgs.map((img) =>
             <li><img width={200} alt='test test' src={img.thumbnail} /></li>,
           )}
