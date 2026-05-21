@@ -14,26 +14,31 @@ export class BrowserVideoConvertExample implements ComponentInterface {
   private convert: VideoThumbnailGenerator | undefined;
 
   async componentWillLoad() {
+    if (!this.videoSrc) {
+      return;
+    }
     // Converting videourl to local
-    const blob = await fetch(this.videoSrc as string)
+    const blob = await fetch(this.videoSrc)
       .then(response => response.blob());
     // Create a local URL for the video blob
     this.objectURL = URL.createObjectURL(blob);
 
     //create Thumbnail on position
-    this.convert = new VideoThumbnailGenerator(this.objectURL) as VideoThumbnailGenerator;
+    this.convert = new VideoThumbnailGenerator(this.objectURL);
     this.generatedImg = await this.convert.getThumbnail(this.framePosition);
     this.generatedImgs = await this.convert.getThumbnails(5);
 
     //cleanup
-    URL.revokeObjectURL(this.objectURL as string);
+    URL.revokeObjectURL(this.objectURL);
     setTimeout(() => {
       this.convert?.revokeUrls();
     }, 1000);
   }
 
   disconnectedCallback() {
-    URL.revokeObjectURL(this.objectURL as string);
+    if (this.objectURL) {
+      URL.revokeObjectURL(this.objectURL);
+    }
     this.convert?.revokeUrls();
   }
 

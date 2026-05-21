@@ -7,6 +7,9 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface BrowserVideoConvertExample {
+        /**
+          * @default 'middle'
+         */
         "framePosition": 'start' | 'middle' | 'end' | number;
         "videoSrc": string | undefined;
     }
@@ -24,18 +27,27 @@ declare global {
 }
 declare namespace LocalJSX {
     interface BrowserVideoConvertExample {
+        /**
+          * @default 'middle'
+         */
         "framePosition"?: 'start' | 'middle' | 'end' | number;
         "videoSrc"?: string | undefined;
     }
+
+    interface BrowserVideoConvertExampleAttributes {
+        "videoSrc": string | undefined;
+        "framePosition": string;
+    }
+
     interface IntrinsicElements {
-        "browser-video-convert-example": BrowserVideoConvertExample;
+        "browser-video-convert-example": Omit<BrowserVideoConvertExample, keyof BrowserVideoConvertExampleAttributes> & { [K in keyof BrowserVideoConvertExample & keyof BrowserVideoConvertExampleAttributes]?: BrowserVideoConvertExample[K] } & { [K in keyof BrowserVideoConvertExample & keyof BrowserVideoConvertExampleAttributes as `attr:${K}`]?: BrowserVideoConvertExampleAttributes[K] } & { [K in keyof BrowserVideoConvertExample & keyof BrowserVideoConvertExampleAttributes as `prop:${K}`]?: BrowserVideoConvertExample[K] };
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "browser-video-convert-example": LocalJSX.BrowserVideoConvertExample & JSXBase.HTMLAttributes<HTMLBrowserVideoConvertExampleElement>;
+            "browser-video-convert-example": LocalJSX.IntrinsicElements["browser-video-convert-example"] & JSXBase.HTMLAttributes<HTMLBrowserVideoConvertExampleElement>;
         }
     }
 }
